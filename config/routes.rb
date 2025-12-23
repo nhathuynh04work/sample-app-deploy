@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     get "static_pages/contact"
     
 
-    root "posts#index"
+    root "static_pages#home"
 end
