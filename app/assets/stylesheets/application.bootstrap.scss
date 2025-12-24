@@ -2,7 +2,7 @@
 @import "bootstrap-icons/font/bootstrap-icons";
 
 body {
-	padding-top: 60px;
+	padding-top: 96px;
 }
 section {
 	overflow: auto;
@@ -12,9 +12,9 @@ textarea {
 }
 .center {
 	text-align: center;
-}
-.center h1 {
-	margin-bottom: 10px;
+	h1 {
+		margin-bottom: 10px;
+	}
 }
 
 h1,
@@ -37,7 +37,7 @@ h2 {
 	margin-bottom: 30px;
 	text-align: center;
 	font-weight: normal;
-	color: #777;
+	color: $gray-700;
 }
 p {
 	font-size: 1.1em;
@@ -53,8 +53,32 @@ p {
 	letter-spacing: -1px;
 	padding-top: 9px;
 	font-weight: bold;
+	&:hover {
+		color: #fff;
+		text-decoration: none;
+	}
 }
-#logo:hover {
-	color: #fff;
-	text-decoration: none;
+
+footer {
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #eaeaea;
+	color: $gray-700;
+	a {
+		color: $gray-800;
+		&:hover {
+			color: $gray-900;
+		}
+	}
+	small {
+		float: left;
+	}
+	ul {
+		float: right;
+		list-style: none;
+		li {
+			float: left;
+			margin-left: 15px;
+		}
+	}
 }
