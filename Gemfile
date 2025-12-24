@@ -40,4 +40,5 @@ group :test do
   gem "selenium-webdriver"
   gem 'guard', '>= 2.18.0'
   gem 'guard-minitest', '2.4.6'
+  gem "rails-controller-testing"
 end
