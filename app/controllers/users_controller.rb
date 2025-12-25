@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         if @user.save
             # handle successful save
         else
-            render "new"
+            render 'new', status: :unprocessable_entity
         end
     end
 
