@@ -7,4 +7,8 @@ module ApplicationHelper
             page_title  + " | " + base_title
         end
     end
+
+    def alert_class(message_type)
+        "alert alert-#{message_type}"
+    end
 end
