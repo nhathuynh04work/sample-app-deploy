@@ -13,4 +13,11 @@ module SessionsHelper
     def logged_in?
         !current_user.nil?
     end
+
+    def log_out
+        session.delete(:user_id)
+        
+        # not necessary because we will redirect but still keep here
+        @current_user = nil
+    end
 end
