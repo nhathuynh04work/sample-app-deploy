@@ -4,6 +4,10 @@ threads min_threads_count, max_threads_count
 port ENV.fetch("PORT") { 3000 }
 environment ENV.fetch("RAILS_ENV") { ENV['RACK_ENV'] || "development" }
 pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
-workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+
+if ENV.fetch("RAILS_ENV", "development") == "production"
+    workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+end
+
 preload_app!
 plugin :tmp_restart
