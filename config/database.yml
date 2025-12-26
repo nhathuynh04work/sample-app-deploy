@@ -6,10 +6,13 @@ default: &default
 development:
     <<: *default
     database: sample_app_development
+    url: <%= ENV["DATABASE_URL_DEVELOPMENT"] %>
 
 test:
     <<: *default
     database: sample_app_test
+    url: <%= ENV["DATABASE_URL_TEST"] %>
+
 
 production:
     primary: &primary_production
