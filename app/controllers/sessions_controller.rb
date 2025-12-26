@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         if user && user.authenticate(params[:session][:password])
             # Log the user in and redirect to profile page
         else
-            flash[:danger] = "Invalid email/password"
+            flash.now[:danger] = "Invalid email/password"
             render "new", status: :unprocessable_entity
         end
     end
