@@ -1,5 +1,4 @@
 module SessionsHelper
-
     def log_in(user)
         session[:user_id] = user.id
     end
@@ -39,7 +38,7 @@ module SessionsHelper
     def log_out
         forget(current_user)
         session.delete(:user_id)
-        
+
         # not necessary because we will redirect but still keep here
         @current_user = nil
     end
@@ -47,7 +46,7 @@ module SessionsHelper
     def redirect_back_or(default)
         redirect_to(session[:forwarding_url] || default)
 
-        # although this is after the redirect command, it still gets executed 
+        # although this is after the redirect command, it still gets executed
         # because redirects only happen when there is a return statement or the end of function
         session.delete(:forwarding_url)
     end

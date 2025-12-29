@@ -2,7 +2,7 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
     def setup
-        @user = User.new(name: "Example User", email: "user@example.com", 
+        @user = User.new(name: "Example User", email: "user@example.com",
                         password: "foobar", password_confirmation: "foobar")
     end
 
@@ -64,8 +64,8 @@ class UserTest < ActiveSupport::TestCase
         assert_not @user.valid?
     end
 
-    # we’ve just left the remember token blank; 
-    # it doesn’t matter what its value is, 
+    # we’ve just left the remember token blank;
+    # it doesn’t matter what its value is,
     # because the error occurs before it ever gets used.
     test "authenticated? should return false for a user with nil digest" do
         assert_not @user.authenticated?("")

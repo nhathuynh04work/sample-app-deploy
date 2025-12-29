@@ -7,7 +7,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     end
 
     test "login with valid email/invalid password" do
-
         get login_path
         assert_template "sessions/new"
 
@@ -41,7 +40,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
         # simulate a user clicking log out on a second window
         delete logout_path
-        
+
         follow_redirect!
         assert_select "a[href=?]", login_path
         assert_select "a[href=?]", logout_path, count: 0

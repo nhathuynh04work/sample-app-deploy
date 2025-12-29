@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
     # password
     has_secure_password
-    
+
     # has_secure_password only check for empty (nil) password not blank password so we need to add presence: true
     validates :password, length: { minimum: 6 }, presence: true, allow_nil: true
 
@@ -29,7 +29,7 @@ class User < ApplicationRecord
     end
 
     # forgets a user
-    def forget 
+    def forget
         update_attribute(:remember_digest, nil)
     end
 
@@ -43,5 +43,4 @@ class User < ApplicationRecord
     def User.new_token
         SecureRandom.urlsafe_base64
     end
-
 end

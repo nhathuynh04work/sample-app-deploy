@@ -23,23 +23,24 @@ gem "bootstrap"
 gem "cssbundling-rails"
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-  gem "bundler-audit", require: false
-  gem "brakeman", require: false
-  gem "rubocop-rails-omakase", require: false
-  gem 'dotenv-rails'
+    gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+    gem "bundler-audit", require: false
+    gem "brakeman", require: false
+    gem "rubocop", require: false
+    gem "rubocop-rails-omakase", require: false
+    gem "dotenv-rails"
 end
 
 group :development do
-  gem "web-console"
+    gem "web-console"
 end
 
 group :test do
-  gem "minitest", "~> 5.0"
-  gem 'minitest-reporters', '1.3.8'
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem 'guard', '>= 2.18.0'
-  gem 'guard-minitest', '2.4.6'
-  gem "rails-controller-testing"
+    gem "minitest", "~> 5.0"
+    gem "minitest-reporters", "1.3.8"
+    gem "capybara"
+    gem "selenium-webdriver"
+    gem "guard", ">= 2.18.0"
+    gem "guard-minitest", "2.4.6"
+    gem "rails-controller-testing"
 end

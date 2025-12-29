@@ -1,5 +1,4 @@
 class User
-
     attr_accessor :first, :last, :email
 
     def initialize(attributes = {})
