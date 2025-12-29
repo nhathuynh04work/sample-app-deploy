@@ -43,4 +43,16 @@ module SessionsHelper
         # not necessary because we will redirect but still keep here
         @current_user = nil
     end
+
+    def redirect_back_or(default)
+        redirect_to(session[:forwarding_url] || default)
+
+        # although this is after the redirect command, it still gets executed 
+        # because redirects only happen when there is a return statement or the end of function
+        session.delete(:forwarding_url)
+    end
+
+    def store_location
+        session[:forwarding_url] = request.original_url if request.get?
+    end
 end
