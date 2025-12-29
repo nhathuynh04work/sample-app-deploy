@@ -27,7 +27,8 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
 
         if @user.update(user_params)
-            # Handle unsuccessful edit
+            flash[:success] = "Profile updated"
+            redirect_to @user
         else
             render "edit", status: :unprocessable_entity
         end

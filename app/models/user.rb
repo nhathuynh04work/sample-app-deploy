@@ -13,8 +13,8 @@ class User < ApplicationRecord
     # password
     has_secure_password
     
-    # has_secure_password only check for empty password not blank password so we need to add presence: true
-    validates :password, length: { minimum: 6 }, presence: true 
+    # has_secure_password only check for empty (nil) password not blank password so we need to add presence: true
+    validates :password, length: { minimum: 6 }, presence: true, allow_nil: true
 
     # saves the user's hashed token for use in persistent session
     def remember
