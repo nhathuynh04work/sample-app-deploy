@@ -16,10 +16,17 @@ class User < ApplicationRecord
     # has_secure_password only check for empty password not blank password so we need to add presence: true
     validates :password, length: { minimum: 6 }, presence: true 
 
+    # saves the user's hashed token for use in persistent session
     def remember
         self.remember_token = User.new_token
         update_attribute(:remember_digest, User.digest(remember_token))
     end
+
+    # returns true if a given token matches the digest
+    def authenticated?
+        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    end
+
 
     # returns the hash digest of  the given string
     def User.digest(string)
@@ -31,4 +38,5 @@ class User < ApplicationRecord
     def User.new_token
         SecureRandom.urlsafe_base64
     end
+
 end
