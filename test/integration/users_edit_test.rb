@@ -20,10 +20,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
         assert_select "div.alert", "The form contains 4 errors."
     end
 
-    test "successful edit" do
+    test "successful edit with friendly forwarding" do
         get edit_user_path @user
         log_in_as(@user)
         assert_redirected_to edit_user_url(@user)
+        assert session[:forwarding_url].nil?
 
         name = "Nhat Huynh"
         email = "nhathuynh04work@gmail.com"
@@ -40,7 +41,5 @@ class UsersEditTest < ActionDispatch::IntegrationTest
         @user.reload
         assert_equal name, @user.name
         assert_equal email, @user.email
-
-
     end
 end
