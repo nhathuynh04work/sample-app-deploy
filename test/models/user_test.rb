@@ -68,6 +68,6 @@ class UserTest < ActiveSupport::TestCase
     # it doesn’t matter what its value is,
     # because the error occurs before it ever gets used.
     test "authenticated? should return false for a user with nil digest" do
-        assert_not @user.authenticated?("")
+        assert_not @user.authenticated?(:remember, "")
     end
 end
