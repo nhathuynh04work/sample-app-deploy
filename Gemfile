@@ -17,6 +17,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 gem "bcrypt"
+gem "will_paginate"
 
 # bootstrap
 gem "bootstrap"
