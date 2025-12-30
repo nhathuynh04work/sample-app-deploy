@@ -19,9 +19,12 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
-            log_in @user
-            flash[:success] = "Welcome to the Sample App!"
-            redirect_to @user # Rails infers that we want to write: redirect_to user_url(@user)
+            UserMailer.account_activation(@user).deliver_now
+            flash[:info] = "Please check your email to activate your account."
+            redirect_to root_url
+
+            # This is old but I keep it here for the note about Rails infer
+            #redirect_to @user # Rails infers that we want to write: redirect_to user_url(@user)
         else
             render "new", status: :unprocessable_entity
         end
@@ -48,25 +51,25 @@ class UsersController < ApplicationController
 
     # Private
     private
-    def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
-
-    def logged_in_user
-        unless logged_in?
-            flash[:danger] = "Please log in."
-            store_location
-            redirect_to login_url
+        def user_params
+            params.require(:user).permit(:name, :email, :password, :password_confirmation)
         end
-    end
 
-    def correct_user
-        # This also sets the @user in the action it runs before
-        @user = User.find(params[:id])
-        redirect_to root_url unless @user == current_user
-    end
+        def logged_in_user
+            unless logged_in?
+                flash[:danger] = "Please log in."
+                store_location
+                redirect_to login_url
+            end
+        end
 
-    def admin_user
-        redirect_to(root_url) unless current_user.admin?
-    end
+        def correct_user
+            # This also sets the @user in the action it runs before
+            @user = User.find(params[:id])
+            redirect_to root_url unless @user == current_user
+        end
+
+        def admin_user
+            redirect_to(root_url) unless current_user.admin?
+        end
 end
