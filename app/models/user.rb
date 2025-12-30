@@ -45,14 +45,14 @@ class User < ApplicationRecord
         SecureRandom.urlsafe_base64
     end
 
-    #private
+    # private
     private
-        def email_downcase
-            self.email = email.downcase
-        end
+    def email_downcase
+        self.email = email.downcase
+    end
 
-        def create_activation_digest
-            self.activation_token = User.new_token
-            self.activation_digest = User.digest(activation_token)
-        end
+    def create_activation_digest
+        self.activation_token = User.new_token
+        self.activation_digest = User.digest(activation_token)
+    end
 end

@@ -27,7 +27,7 @@ module WillPaginate
                     tag(:div, link(text, page, class: "page-link"), class: "page-item #{classname}")
                 else
                     tag(:div, link(text, "#", class: "page-link"), class: "page-item disabled #{classname}")
-                end 
+                end
             end
         end
     end
