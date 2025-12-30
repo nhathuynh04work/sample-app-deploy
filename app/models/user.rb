@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-    attr_accessor :remember_token
+    attr_accessor :remember_token, :activation_token
 
-    before_save { self.email = email.downcase }
+    before_save :email_downcase
+    before_create :create_activation_digest
 
     # name
     validates :name, presence: true, length: { maximum: 50 }
@@ -43,4 +44,15 @@ class User < ApplicationRecord
     def User.new_token
         SecureRandom.urlsafe_base64
     end
+
+    #private
+    private
+        def email_downcase
+            self.email = email.downcase
+        end
+
+        def create_activation_digest
+            self.activation_token = User.new_token
+            self.activation_digest = User.digest(activation_token)
+        end
 end
