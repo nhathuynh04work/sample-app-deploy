@@ -53,29 +53,38 @@ Rails.application.configure do
     config.active_job.queue_adapter = :solid_queue
     config.solid_queue.connects_to = { database: { writing: :queue } }
 
-    # Ignore bad email addresses and do not raise email delivery errors.
-    # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+    # 1. "Don't fail silently."
+    # If SendGrid rejects the password or the email, your app will crash (500 error) 
+    # so you know something is wrong, rather than pretending it worked.
     config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.perform_caching = false
 
-    # Set host to be used by links generated in mailer templates.
+    # 2. "Use the Real World."
+    # Tells Rails to use the Simple Mail Transfer Protocol (SMTP) standard
+    # instead of just logging to a file or saving to an array (like in test).
+    config.action_mailer.delivery_method = :smtp
+
+    # 3. "Where do links go?"
+    # When you write `edit_user_url(user)` inside an email, Rails doesn't know 
+    # if it's running on localhost or on render.com. 
+    # This line tells Rails: "If you make a link, put 'sample-app...onrender.com' in front."
+    config.action_mailer.perform_caching = false
     host = ENV['RENDER_EXTERNAL_HOSTNAME'] || 'sample-app-deploy-3ty9.onrender.com'
     config.action_mailer.default_url_options = { host: host, protocol: "https" }
 
-    # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
+    # 4. The Connection Details
     config.action_mailer.smtp_settings = {
-        address:              'smtp.sendgrid.net',
+        address:        'smtp.sendgrid.net',    
+
         # For port, the default port for email service is 587 
         # but it's so popular that sometimes it causes slow connection
         # leading to timeout error (which we are currently encountered)
         # Therefore we switch to port 2525 as it is SendGrid's minor port designed to handle this issue
-        port:                 2525, 
-        domain:               host,
-        user_name:            'apikey',                 # This is literally the string 'apikey'
-        password:             ENV['SENDGRID_API_KEY'],  # This pulls the key from Render
-        authentication:       'plain',
-        enable_starttls_auto: true
+        port:           2525,                     
+        domain:         host,                     # Identifying our app's domain to SendGrid
+        user_name:      'apikey',                 # The standard SendGrid username
+        password:       ENV['SENDGRID_API_KEY'],  # The Secret Key
+        authentication: 'plain',                  # The method of sending the password
+        enable_starttls_auto: true                # Encrypt the connection (SSL/TLS) so hackers can't read the email
     }
 
     # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
