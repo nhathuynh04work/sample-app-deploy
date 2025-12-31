@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     # account activation
     resources :account_activations, only: [:edit]
 
+    # password reset
+    resources :password_resets, only: [:new, :edit, :create, :update]
+
     # root
     root "static_pages#home"
 end
