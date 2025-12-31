@@ -55,19 +55,24 @@ Rails.application.configure do
 
     # Ignore bad email addresses and do not raise email delivery errors.
     # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-    # config.action_mailer.raise_delivery_errors = false
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_caching = false
 
     # Set host to be used by links generated in mailer templates.
-    config.action_mailer.default_url_options = { host: "example.com" }
+    host = ENV['RENDER_EXTERNAL_HOSTNAME'] || 'sample-app-deploy-3ty9.onrender.com'
+    config.action_mailer.default_url_options = { host: host, protocol: "https" }
 
     # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
-    # config.action_mailer.smtp_settings = {
-    #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
-    #   password: Rails.application.credentials.dig(:smtp, :password),
-    #   address: "smtp.example.com",
-    #   port: 587,
-    #   authentication: :plain
-    # }
+    config.action_mailer.smtp_settings = {
+        address:              'smtp.sendgrid.net',
+        port:                 587,
+        domain:               host,
+        user_name:            'apikey',                 # This is literally the string 'apikey'
+        password:             ENV['SENDGRID_API_KEY'],  # This pulls the key from Render
+        authentication:       'plain',
+        enable_starttls_auto: true
+    }
 
     # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
     # the I18n.default_locale when a translation cannot be found).
