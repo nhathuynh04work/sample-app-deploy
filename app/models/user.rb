@@ -48,8 +48,7 @@ class User < ApplicationRecord
 
     # activates an account
     def activate
-        self.update_attribute(:activated, true)
-        self.update_attribute(:activated_at, Time.zone.now)
+        self.update_columns(activated: true, activated_at: Time.zone.now)
     end
 
     # send email with activation token
