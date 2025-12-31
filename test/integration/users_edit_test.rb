@@ -25,8 +25,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
         assert_redirected_to edit_user_url(@user)
         assert session[:forwarding_url].nil?
 
-        name = "Nhat Huynh"
-        email = "nhathuynh04work@gmail.com"
+        name = "Updated"
+        email = "updated@gmail.com"
 
         patch user_path(@user), params: { user: { name: name,
                                                     email: email,
