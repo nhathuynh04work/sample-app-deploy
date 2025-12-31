@@ -70,7 +70,7 @@ Rails.application.configure do
         # but it's so popular that sometimes it causes slow connection
         # leading to timeout error (which we are currently encountered)
         # Therefore we switch to port 2525 as it is SendGrid's minor port designed to handle this issue
-        port:                 587, 
+        port:                 2525, 
         domain:               host,
         user_name:            'apikey',                 # This is literally the string 'apikey'
         password:             ENV['SENDGRID_API_KEY'],  # This pulls the key from Render
