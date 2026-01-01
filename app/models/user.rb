@@ -12,9 +12,30 @@ class User < ApplicationRecord
     validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
 
     # password
+    # has_secure_password needs to be used with bcrypt gem and the model has a password_digest column
+    # it adds the following:
+    # 1) virtual attributes: password and password_confirmation
+    # 2) before_save callback that hash the password and save it in password_digest
+    # 3) `authenticate(string)` method that checks if the string matches the password_digest field
+    # 4) validations: 
+    #    + password: presence: true ONLY ON CREATION
+    #    + password and password_confirmation matches only if password.present? 
+    #    + password: maximum length of 72 bytes
     has_secure_password
 
-    # has_secure_password only check for empty (nil) password not blank password so we need to add presence: true
+    # this validation rules add to the rules already enforced by `has_secure_password` (HSC)
+    # 1) Why is there `presence: true` here when HSC already has it? 
+    #    => The presence check (non-nil AND non-blank AND non-empty-spaces) of HSC only happens on CREATION.
+    #       Therefore, we add this here to make sure that when UPDATING the password, it must be a valid string
+    #
+    # 2) What the `allow_nil` does here?
+    #    => `allow_nil: true` checks if the data is nil. If yes, then it would SKIP the other validation rules.
+    #
+    # 3) Does the `allow_nil: true` and `presence: true` clashes one another?
+    #    => No. The `allow_nil` runs before `presence` therefore if the data is nil, the presence check is skipped
+    #       and no error is raised. This is helpful for when the user is editing their profile in the profile edit page.
+    #       When they leave the password field empty, the form would by default sent it as a nil field and hence
+    #       allows user to have to reenter the password field when they just want to change the name or email (good UX)
     validates :password, length: { minimum: 6 }, presence: true, allow_nil: true
 
     # saves the user's hashed token for use in persistent session
@@ -67,6 +88,11 @@ class User < ApplicationRecord
     # send password reset email
     def send_password_reset_email
         UserMailer.password_reset(self).deliver_now
+    end
+
+    # return true if a password reset has expired
+    def password_reset_expired?
+        reset_sent_at < 2.hours.ago
     end
 
     # private
