@@ -37,8 +37,12 @@ class PasswordResetsController < ApplicationController
             @user.errors.add(:password, :blank)
             render "edit", status: :unprocessable_entity
         elsif @user.update(user_params)
+            # clear the reset_digest to avoid user using the back button to change password again
+            @user.update_attribute(:reset_digest, nil)
+            
             log_in @user
             flash[:success] = "Password has been reset"
+
             redirect_to @user
         else
             render "edit", status: :unprocessable_entity
