@@ -25,7 +25,8 @@ class User < ApplicationRecord
 
     # this validation rules add to the rules already enforced by `has_secure_password` (HSC)
     # 1) Why is there `presence: true` here when HSC already has it? 
-    #    => The presence check (non-nil AND non-blank AND non-empty-spaces) of HSC only happens on CREATION.
+    #    => The presence check of HSC only happens on CREATION and it only checks for non-nil value, 
+    #       meaning that "   " can still pass the check.
     #       Therefore, we add this here to make sure that when UPDATING the password, it must be a valid string
     #
     # 2) What the `allow_nil` does here?
