@@ -18,6 +18,9 @@ class Micropost < ApplicationRecord
     #    (Micropost.new) only sets the user_id and therefore the validation would not check and the test would pass
     #    because user is still nil
     belongs_to :user
+
+    default_scope -> { order(created_at: :desc) }
+
     validates :user_id, presence: true # we keep this for backward compatibility
     validates :content, presence: true, length: { maximum: 140 }
 end
