@@ -25,6 +25,10 @@ gem "mini_magick"
 gem "bootstrap"
 gem "cssbundling-rails"
 
+group :production do
+    gem "aws-sdk-s3", require: false
+end
+
 group :development, :test do
     gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
     gem "bundler-audit", require: false
