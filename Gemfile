@@ -45,7 +45,7 @@ end
 
 group :test do
     gem "minitest", "~> 5.0"
-    gem "minitest-reporters", "1.3.8"
+    gem "minitest-reporters", "1.7.1"
     gem "capybara"
     gem "selenium-webdriver"
     gem "guard", ">= 2.18.0"
