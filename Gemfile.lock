@@ -85,6 +85,25 @@ GEM
       public_suffix (>= 2.0.2, < 8.0)
     ansi (1.5.0)
     ast (2.4.3)
+    aws-eventstream (1.4.0)
+    aws-partitions (1.1200.0)
+    aws-sdk-core (3.240.0)
+      aws-eventstream (~> 1, >= 1.3.0)
+      aws-partitions (~> 1, >= 1.992.0)
+      aws-sigv4 (~> 1.9)
+      base64
+      bigdecimal
+      jmespath (~> 1, >= 1.6.1)
+      logger
+    aws-sdk-kms (1.118.0)
+      aws-sdk-core (~> 3, >= 3.239.1)
+      aws-sigv4 (~> 1.5)
+    aws-sdk-s3 (1.209.0)
+      aws-sdk-core (~> 3, >= 3.234.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.5)
+    aws-sigv4 (1.12.1)
+      aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.2)
@@ -180,6 +199,7 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
+    jmespath (1.6.2)
     json (2.18.0)
     kamal (2.10.1)
       activesupport (>= 7.0)
@@ -214,7 +234,8 @@ GEM
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
-    minitest (5.27.0)
+    minitest (6.0.1)
+      prism (~> 1.5)
     minitest-reporters (1.3.8)
       ansi
       builder
@@ -457,6 +478,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations
+  aws-sdk-s3
   bcrypt
   bootsnap
   bootstrap
@@ -474,7 +496,7 @@ DEPENDENCIES
   jbuilder
   kamal
   mini_magick
-  minitest (~> 5.0)
+  minitest (~> 6.0)
   minitest-reporters (= 1.3.8)
   pg (~> 1.1)
   propshaft
@@ -511,6 +533,12 @@ CHECKSUMS
   addressable (2.8.8) sha256=7c13b8f9536cf6364c03b9d417c19986019e28f7c00ac8132da4eb0fe393b057
   ansi (1.5.0) sha256=5408253274e33d9d27d4a98c46d2998266fd51cba58a7eb9d08f50e57ed23592
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
+  aws-eventstream (1.4.0) sha256=116bf85c436200d1060811e6f5d2d40c88f65448f2125bc77ffce5121e6e183b
+  aws-partitions (1.1200.0) sha256=8f356d9a4c05377b8ae5f6c8a7b0bd7b1b3562fd12f700eb9c4a0cb2115a049a
+  aws-sdk-core (3.240.0) sha256=86b63890525caaf56702972e2669b30ec89230c2b45f12c88290ee678d8d189e
+  aws-sdk-kms (1.118.0) sha256=c9c751596d4f1502adac857c90010f00a9a52370b78e170acb198af7fa716fbd
+  aws-sdk-s3 (1.209.0) sha256=3a94259f2e319776fdeb7cacb3c995005f4960cdc113bd668eb0ab6deaa26a79
+  aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcrypt (3.1.20) sha256=8410f8c7b3ed54a3c00cd2456bf13917d695117f033218e2483b2e40b0784099
   bcrypt_pbkdf (1.1.2) sha256=c2414c23ce66869b3eb9f643d6a3374d8322dfb5078125c82792304c10b94cf6
@@ -559,6 +587,7 @@ CHECKSUMS
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.16.0) sha256=2abe56c9ac947cdcb2f150572904ba798c1e93c890c256f8429981a7675b0806
   jbuilder (2.14.1) sha256=4eb26376ff60ef100cb4fd6fd7533cd271f9998327e86adf20fd8c0e69fabb42
+  jmespath (1.6.2) sha256=238d774a58723d6c090494c8879b5e9918c19485f7e840f2c1c7532cf84ebcb1
   json (2.18.0) sha256=b10506aee4183f5cf49e0efc48073d7b75843ce3782c68dbeb763351c08fd505
   kamal (2.10.1) sha256=53b7ecb4c33dd83b1aedfc7aacd1c059f835993258a552d70d584c6ce32b6340
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
@@ -573,7 +602,7 @@ CHECKSUMS
   method_source (1.1.0) sha256=181301c9c45b731b4769bc81e8860e72f9161ad7d66dd99103c9ab84f560f5c5
   mini_magick (5.3.1) sha256=29395dfd76badcabb6403ee5aff6f681e867074f8f28ce08d78661e9e4a351c4
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
-  minitest (5.27.0) sha256=2d3b17f8a36fe7801c1adcffdbc38233b938eb0b4966e97a6739055a45fa77d5
+  minitest (6.0.1) sha256=7854c74f48e2e975969062833adc4013f249a4b212f5e7b9d5c040bf838d54bb
   minitest-reporters (1.3.8) sha256=2265cde03615e3116cfdd34502a126e87ac83159c96e2dec4be7b7545cfd0aa3
   msgpack (1.8.0) sha256=e64ce0212000d016809f5048b48eb3a65ffb169db22238fb4b72472fecb2d732
   nenv (0.3.0) sha256=d9de6d8fb7072228463bf61843159419c969edb34b3cef51832b516ae7972765
