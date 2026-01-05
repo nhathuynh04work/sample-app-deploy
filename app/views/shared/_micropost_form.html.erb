@@ -4,7 +4,13 @@
         <%= f.text_area :content, placeholder: "Compose new micropost..." %>
     </div>
     <span class="image">
-        <%= f.file_field :image %>
+        <%= f.file_field :image, id: "micropost_image", 
+                                data: { 
+                                        controller: "file-upload", 
+                                        action: "change->file-upload#validateSize" 
+                                      }, 
+                                accept: "image/jpeg,image/gif,image/png" 
+        %>
     </span>
     <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
