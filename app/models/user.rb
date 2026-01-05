@@ -1,17 +1,20 @@
 class User < ApplicationRecord
+    # relationships
+    has_many :microposts
+
+    # virtual attributes
     attr_accessor :remember_token, :activation_token, :reset_token
 
+    # callbacks
     before_save :email_downcase
     before_create :create_activation_digest
 
-    # name
+    # validations
     validates :name, presence: true, length: { maximum: 50 }
 
-    # email
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
 
-    # password
     # has_secure_password needs to be used with bcrypt gem and the model has a password_digest column
     # it adds the following:
     # 1) virtual attributes: password and password_confirmation
