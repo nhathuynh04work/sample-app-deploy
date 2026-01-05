@@ -15,10 +15,11 @@ gem "solid_cable"
 gem "bootsnap", require: false
 gem "kamal", require: false
 gem "thruster", require: false
-gem "image_processing", "~> 1.2"
 gem "bcrypt"
 gem "will_paginate"
 gem "active_storage_validations"
+gem "image_processing"
+gem "mini_magick"
 
 # bootstrap
 gem "bootstrap"
