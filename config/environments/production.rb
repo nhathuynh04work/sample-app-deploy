@@ -54,7 +54,7 @@ Rails.application.configure do
 
     # Replace the default in-process and non-durable queuing backend for Active Job.
     config.active_job.queue_adapter = :solid_queue
-    config.solid_queue.connects_to = { database: { writing: :queue } }
+  config.solid_queue.connects_to = { database: { writing: :queue } }
 
     # 1. "Don't fail silently."
     # If SendGrid rejects the password or the email, your app will crash (500 error) 
