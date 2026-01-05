@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     # users
     resources :users
 
+    # microposts
+    resources :microposts, only: [:create, :destroy]
+
     # account activation
     resources :account_activations, only: [:edit]
 
