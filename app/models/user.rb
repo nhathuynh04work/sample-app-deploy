@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     # relationships
-    has_many :microposts
+    has_many :microposts, dependent: :destroy
 
     # virtual attributes
     attr_accessor :remember_token, :activation_token, :reset_token
