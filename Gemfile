@@ -18,6 +18,7 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 gem "bcrypt"
 gem "will_paginate"
+gem "active_storage_validations"
 
 # bootstrap
 gem "bootstrap"
