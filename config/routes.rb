@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     # password reset
     resources :password_resets, only: [:new, :edit, :create, :update]
 
+    # relationships
+    resources :relationships, only: [:create, :destroy]
+
     # root
     root "static_pages#home"
 end
