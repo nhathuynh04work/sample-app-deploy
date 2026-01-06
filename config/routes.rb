@@ -12,7 +12,12 @@ Rails.application.routes.draw do
     get "/contact", to: "static_pages#contact"
 
     # users
-    resources :users
+    resources :users do
+        member do
+            get :following
+            get :followers
+        end
+    end
 
     # microposts
     resources :microposts, only: [:create, :destroy]
