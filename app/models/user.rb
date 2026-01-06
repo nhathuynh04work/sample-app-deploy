@@ -9,6 +9,9 @@ class User < ApplicationRecord
                                         foreign_key: "followed_id",
                                         dependent: :destroy
 
+    has_many :following, through: :active_relationships, source: :followed
+    has_many :follower, through: :passive_relationships, source: :follower
+
     # virtual attributes
     attr_accessor :remember_token, :activation_token, :reset_token
 
