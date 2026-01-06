@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_05_152400) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_06_025215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,6 +49,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_05_152400) do
     t.bigint "user_id", null: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "followed_id"
+    t.integer "follower_id"
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
