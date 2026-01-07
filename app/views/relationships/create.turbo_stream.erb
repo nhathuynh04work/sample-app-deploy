@@ -1,8 +1,0 @@
-<%# 1. Find the div with id="follow_form" and replace its content with the 'unfollow' partial %>
-<%= turbo_stream.update "follow_form" do %>
-    <%= render "users/unfollow" %>
-<% end %>
-<%# 2. Find the element with id="followers" and update the count %>
-<%= turbo_stream.update "followers" do %>
-    <%= @user.followers.count %>
-<% end %>

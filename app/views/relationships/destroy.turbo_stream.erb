@@ -1,8 +1,0 @@
-<%# 1. Update form back to 'follow' %>
-<%= turbo_stream.update "follow_form" do %>
-    <%= render "users/follow" %>
-<% end %>
-<%# 2. Update count %>
-<%= turbo_stream.update "followers" do %>
-    <%= @user.followers.count %>
-<% end %>
