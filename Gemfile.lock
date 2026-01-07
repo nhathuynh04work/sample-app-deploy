@@ -404,6 +404,13 @@ GEM
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
     shellany (0.0.1)
+    slim (5.2.1)
+      temple (~> 0.10.0)
+      tilt (>= 2.1.0)
+    slim-rails (4.0.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 6.0, != 5.0.0)
     solid_cable (3.0.12)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -430,12 +437,14 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.2.0)
+    temple (0.10.4)
     thor (1.4.0)
     thruster (0.1.17)
     thruster (0.1.17-aarch64-linux)
     thruster (0.1.17-arm64-darwin)
     thruster (0.1.17-x86_64-darwin)
     thruster (0.1.17-x86_64-linux)
+    tilt (2.6.1)
     timeout (0.6.0)
     tsort (0.2.0)
     turbo-rails (2.0.20)
@@ -505,6 +514,7 @@ DEPENDENCIES
   rubocop
   rubocop-rails-omakase
   selenium-webdriver
+  slim-rails
   solid_cable
   solid_cache
   solid_queue
@@ -671,18 +681,22 @@ CHECKSUMS
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.39.0) sha256=984a1e63d39472eaf286bac3c6f1822fa7eea6eed9c07a66ce7b3bc5417ba826
   shellany (0.0.1) sha256=0e127a9132698766d7e752e82cdac8250b6adbd09e6c0a7fbbb6f61964fedee7
+  slim (5.2.1) sha256=72351dff7e2ff20e2d5c393cfc385bb9142cef5db059141628fd7163ac3c13e7
+  slim-rails (4.0.0) sha256=2cfee5c4ba00d4d935676db1e74a05dbaf9dd6f789903a1006e3bb687bbe36e2
   solid_cable (3.0.12) sha256=a168a54731a455d5627af48d8441ea3b554b8c1f6e6cd6074109de493e6b0460
   solid_cache (1.0.10) sha256=bc05a2fb3ac78a6f43cbb5946679cf9db67dd30d22939ededc385cb93e120d41
   solid_queue (1.2.4) sha256=bb60f9552a969ac377d87601b0ff6a088f5e6f20b0cbbe3844a59d022cac0e4b
   sshkit (1.25.0) sha256=c8c6543cdb60f91f1d277306d585dd11b6a064cb44eab0972827e4311ff96744
   stimulus-rails (1.3.4) sha256=765676ffa1f33af64ce026d26b48e8ffb2e0b94e0f50e9119e11d6107d67cb06
   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1
+  temple (0.10.4) sha256=b7a1e94b6f09038ab0b6e4fe0126996055da2c38bec53a8a336f075748fff72c
   thor (1.4.0) sha256=8763e822ccb0f1d7bee88cde131b19a65606657b847cc7b7b4b82e772bcd8a3d
   thruster (0.1.17) sha256=6f3f1de43e22f0162d81cbc363f45ee42a1b8460213856c1a899cbf0d3297235
   thruster (0.1.17-aarch64-linux) sha256=1b3a34b2814185c2aeaf835b5ecff5348cdcf8e77809f7a092d46e4b962a16ba
   thruster (0.1.17-arm64-darwin) sha256=75da66fc4a0f012f9a317f6362f786a3fa953879a3fa6bed8deeaebf1c1d66ec
   thruster (0.1.17-x86_64-darwin) sha256=b49e4c52563d1476d3aa1e12f7f57febb4510ac163f6abeac7c7c0de8a54437f
   thruster (0.1.17-x86_64-linux) sha256=77b8f335075bd4ece7631dc84a19a710a1e6e7102cbce147b165b45851bdfcd3
+  tilt (2.6.1) sha256=35a99bba2adf7c1e362f5b48f9b581cce4edfba98117e34696dde6d308d84770
   timeout (0.6.0) sha256=6d722ad619f96ee383a0c557ec6eb8c4ecb08af3af62098a0be5057bf00de1af
   tsort (0.2.0) sha256=9650a793f6859a43b6641671278f79cfead60ac714148aabe4e3f0060480089f
   turbo-rails (2.0.20) sha256=cbcbb4dd3ce59f6471c9f911b1655b2c721998cc8303959d982da347f374ea95
